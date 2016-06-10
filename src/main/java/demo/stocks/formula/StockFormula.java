@@ -16,6 +16,9 @@ public class StockFormula {
 
 	private DataProvider dataProvider;
 	
+	public StockFormula() {
+	}
+	
 	public StockFormula(DataProvider dataProvider) {
 		this.dataProvider = dataProvider;
 	}
