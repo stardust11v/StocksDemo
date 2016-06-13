@@ -3,21 +3,19 @@ package demo.stocks;
 import demo.stocks.model.Stock;
 
 /**
+ * The entry point of this simple stock Java app.
  * 
  * @author Irina
  *
  */
 public class App {
 
-	private DataProvider dataProvider = new DataProvider();
-	private Output output = new Output(dataProvider);
-	
 	public static void main(String[] args) {
-		App app = new App();
+		AppObject appObject = new AppObject();
 		
-		Stock stock = app.dataProvider.getStocks().get(0);
+		Stock stock = appObject.getDataProvider().getAllStocks().get(0);
 		
-		app.output.outputA(stock);
-		app.output.outputB();
+		appObject.getOutput().outputA(stock);
+		appObject.getOutput().outputB();
 	}
 }

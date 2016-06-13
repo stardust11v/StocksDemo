@@ -1,4 +1,4 @@
-package demo.stocks;
+package demo.stocks.data;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,9 +8,12 @@ import demo.stocks.model.Stock;
 import demo.stocks.model.StockType;
 import demo.stocks.model.Trade;
 import demo.stocks.model.TradeIndicator;
-import demo.stocks.utils.DateUtils;
+import demo.stocks.util.DateUtils;
 
 /**
+ * Data holder ad provider for this application.
+ * It holds all data in memory.
+ * Returns the data as needed
  * 
  * @author Irina
  *
@@ -25,7 +28,7 @@ public class DataProvider {
 		initTrades();
 	}
 
-	public List<Stock> getStocks() {
+	public List<Stock> getAllStocks() {
 		return stocks;
 	}
 
@@ -58,9 +61,8 @@ public class DataProvider {
         return filteredTradeList;
 	}
 
-	public void recordTrade(Trade trade) {
+	public void addTrade(Trade trade) {
 		trades.add(trade);
-		trade.getStock().setTickerPrice(trade.getPrice());
 	}
 
 	private void initStocks() {
@@ -81,18 +83,18 @@ public class DataProvider {
 		Date currentDate = new Date();
 		
 		Trade trade1 = new Trade(stock1, currentDate, 1000, 8, TradeIndicator.BUY);
-		recordTrade(trade1);
+		addTrade(trade1);
 
 		Trade trade2 = new Trade(stock1, DateUtils.getPastDateTime(currentDate, 5), 2000, 10, TradeIndicator.BUY);
-		recordTrade(trade2);
+		addTrade(trade2);
 
 		Trade trade3 = new Trade(stock1, DateUtils.getPastDateTime(currentDate, 10), 3000, 6, TradeIndicator.SELL);
-		recordTrade(trade3);
+		addTrade(trade3);
 
 		Trade trade4 = new Trade(stock1, DateUtils.getPastDateTime(currentDate, 15), 4000, 12, TradeIndicator.BUY);
-		recordTrade(trade4);
+		addTrade(trade4);
 
 		Trade trade5 = new Trade(stock1, DateUtils.getPastDateTime(currentDate, 20), 5000, 10, TradeIndicator.SELL);
-		recordTrade(trade5);
+		addTrade(trade5);
 	}
 }

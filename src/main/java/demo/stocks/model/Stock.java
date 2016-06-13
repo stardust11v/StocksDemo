@@ -13,6 +13,7 @@ public class Stock {
 	private double lastDividend;
 	private double fixedDividend;
     private double parValue;
+    
     private double tickerPrice;
 	
     public Stock() {
@@ -29,6 +30,34 @@ public class Stock {
 		this.fixedDividend = fixedDividend;
 		this.parValue = parValue;
 		this.tickerPrice = tickerPrice;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((symbol == null) ? 0 : symbol.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Stock other = (Stock) obj;
+		if (symbol == null) {
+			if (other.symbol != null)
+				return false;
+		} else if (!symbol.equals(other.symbol))
+			return false;
+		if (type != other.type)
+			return false;
+		return true;
 	}
 	
 	public String getSymbol() {

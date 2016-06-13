@@ -1,4 +1,4 @@
-package demo.stocks.utils;
+package demo.stocks.util;
 
 import java.util.Date;
 

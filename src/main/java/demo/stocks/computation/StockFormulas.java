@@ -1,26 +1,21 @@
-package demo.stocks.formula;
+package demo.stocks.computation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import demo.stocks.DataProvider;
 import demo.stocks.model.Stock;
 import demo.stocks.model.Trade;
 
 /**
+ * Implements all the needed formulas for stocks.
  * 
  * @author Irina
  *
  */
-public class StockFormula {
+public class StockFormulas {
 
-	private DataProvider dataProvider;
-	
-	public StockFormula() {
-	}
-	
-	public StockFormula(DataProvider dataProvider) {
-		this.dataProvider = dataProvider;
+	public StockFormulas() {
 	}
 	
 	public double dividendYield(Stock stock) {
@@ -69,13 +64,13 @@ public class StockFormula {
 		return stockPrice;
 	}
 
-	public double gbceAllShareIndex(List<Stock> stocks, List<Trade> allTrades) {
+	public double gbceAllShareIndex(Map<Stock, List<Trade>> allStocksTrades) {
 		double allShareIndex = 0;
 
         List<Double> stockPrices = new ArrayList<>();
 
-        for (Stock stock : stocks) {
-            List<Trade> stockTrades = dataProvider.getTradesBy(stock);
+        for (Stock stock : allStocksTrades.keySet()) {
+            List<Trade> stockTrades = allStocksTrades.get(stock);
             double price = stockPrice(stock, stockTrades);
             if (price > 0) {
                 stockPrices.add(price);
@@ -89,7 +84,7 @@ public class StockFormula {
 		return allShareIndex;
 	}
 
-	private double geometricMean(List<Double> prices) {
+	public double geometricMean(List<Double> prices) {
 		double geometricMean = 1;
 
 		for (double price : prices) {

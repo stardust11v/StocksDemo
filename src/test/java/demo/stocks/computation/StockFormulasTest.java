@@ -1,4 +1,4 @@
-package demo.stocks.formula;
+package demo.stocks.computation;
 
 import static org.junit.Assert.*;
 
@@ -10,37 +10,40 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Test;
 
+import demo.stocks.computation.StockFormulas;
 import demo.stocks.model.Stock;
 import demo.stocks.model.StockType;
 import demo.stocks.model.Trade;
 import demo.stocks.model.TradeIndicator;
-import demo.stocks.utils.DateUtils;
+import demo.stocks.util.DateUtils;
 
-public class StockFormulaTest {
+public class StockFormulasTest {
 
 	@Test
 	public void testDividendYield_Common() {
-		StockFormula stockFormula = new StockFormula();
+		StockFormulas stockFormula = new StockFormulas();
 		
 		Stock stock = new Stock("TEA", StockType.COMMON, 10, 15, 12, 8);
 		
+		// dividendYield = 10 / 8 = 1.25
 		double dividendYield = stockFormula.dividendYield(stock);
 		assertThat(dividendYield, is(1.25));
 	}
 	
 	@Test
 	public void testDividendYield_Preferred() {
-		StockFormula stockFormula = new StockFormula();
+		StockFormulas stockFormula = new StockFormulas();
 		
 		Stock stock = new Stock("GIN", StockType.PREFERRED, 12, 6, 20, 15);
 		
+		// dividendYield = (6 * 20) / 15 = 8
 		double dividendYield = stockFormula.dividendYield(stock);
 		assertThat(dividendYield, is(8.0));
 	}
 
 	@Test
 	public void testPeRatio_Common() {
-		StockFormula stockFormula = new StockFormula();
+		StockFormulas stockFormula = new StockFormulas();
 		
 		Stock stock = new Stock("TEA", StockType.COMMON, 10, 15, 12, 8);
 		
@@ -50,7 +53,7 @@ public class StockFormulaTest {
 	
 	@Test
 	public void testPeRatio_Preferred() {
-		StockFormula stockFormula = new StockFormula();
+		StockFormulas stockFormula = new StockFormulas();
 		
 		Stock stock = new Stock("GIN", StockType.PREFERRED, 12, 6, 20, 15);
 		
@@ -60,7 +63,7 @@ public class StockFormulaTest {
 
 	@Test
 	public void testStockPrice() {
-		StockFormula stockFormula = new StockFormula();
+		StockFormulas stockFormula = new StockFormulas();
 		
 		Stock stock = new Stock("TEA", StockType.COMMON, 10, 15, 12, 8);
 		
